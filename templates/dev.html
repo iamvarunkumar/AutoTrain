@@ -1,5 +1,3 @@
-<!-- dev.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +16,22 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
     />
+    <style>
+        body{
+            background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 75rem;
+        }
+        .main-div {
+            backdrop-filter: blur(8px) saturate(158%);
+            -webkit-backdrop-filter: blur(8px) saturate(158%);
+            background-color: rgba(255, 255, 255, 0.62);
+            border-radius: 12px;
+            border: 1px solid rgba(209, 213, 219, 0.3);
+        }
+
+    </style>
 </head>
 <body>
 <header>
@@ -25,18 +39,40 @@
 </header>
 <div class="container">
     <h1>Dashboard</h1>
-    <div class="container mt-5">
+    <div class="container card main-div rounded-1 mt-5 p-4">
         <h1>Upload CSV File</h1>
-        <form method="post" enctype="multipart/form-data" action="{% url 'upload_file' %}">
+        <form id="uploadForm" method="post" enctype="multipart/form-data" action="{% url 'upload_file' %}">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="formFile" class="form-label">Choose CSV file</label>
                 <input class="form-control" type="file" id="formFile" name="data">
             </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
+            <button id="uploadButton" type="submit" class="btn btn-primary">Upload</button>
         </form>
+        {% if enable_components %}
+        <!-- Encoder Selection -->
+        <div class="mb-3">
+            <label for="encoderSelect" class="form-label">Select Encoder for Categorical Column:</label>
+            <select class="form-select" id="encoderSelect" name="encoder">
+                <option value="label">Label Encoder</option>
+                <option value="onehot">One-Hot Encoder</option>
+                <!-- Add more options if needed -->
+            </select>
+        </div>
+        <!-- Select box for categorical columns -->
+        <div class="mb-3">
+            <label for="categoricalColumnsSelect" class="form-label">Select Categorical Columns:</label>
+            <select class="form-select" id="categoricalColumnsSelect" name="cat_cols" multiple>
+                {% for column in cat_cols %}
+                    <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- Other Components (to be added based on requirements) -->
+        {% endif %}
     </div>
 </div>
+
 <footer>
     <!-- place footer here -->
 </footer>
