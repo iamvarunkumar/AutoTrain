@@ -11,5 +11,6 @@ urlpatterns = [
     path("upload/", views.upload_file, name='upload_file'),
     path("dataframe_summary/", views.dataframe_summary, name='dataframe_summary'),
     path("save_to_db",views.save_to_database,name="save_to_database"),
+    path("enable_dashboard_items",views.enable_dashboard_items,name="enable_dashboard_items"),
 
 ]
