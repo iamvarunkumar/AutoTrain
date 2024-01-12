@@ -108,7 +108,7 @@ def enable_dashboard_items(request):
 
         # Add any additional context you need here
 
-        return render(request, 'dev.html', context)
+        return render(request, 'dashboard.html', context)
     else:
         # Logic for users accessing dev.html directly without coming from summary page
         # Set the flag to False or omit it from the context
@@ -117,52 +117,7 @@ def enable_dashboard_items(request):
             'enable_components': False,
         }
 
-        return render(request, 'dev.html', context)
-    
-def dataframe_summary1(request):
-    df_preview = None
-    save_success = request.GET.get('save_success', False)
-
-    # Retrieve the list of dictionaries from the session
-    data_json = request.session.get('uploaded_data')
-    uploaded_data_exists = data_json is not None
-
-    context = {
-        'save_success': save_success,
-        'uploaded_data_exists': uploaded_data_exists,
-    }
-    
-    if uploaded_data_exists:
-        # Convert the JSON string back to a list of dictionaries
-        data_as_dicts = json.loads(data_json)
-        # Convert the list of dictionaries back to a DataFrame for display
-        df = pd.DataFrame(data_as_dicts)
-        # Generate HTML for displaying first 10 rows of DataFrame
-        df_preview = df.head(10).to_html(classes='table table-striped')
-
-        numerical_cols = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
-        cat_cols = df.select_dtypes(include=['object', 'category']).columns.tolist()
-        date_cols = df.select_dtypes(include=['datetime64']).columns.tolist()
-
-        context.update({
-            'preview_html':df_preview,
-            'save_success':save_success,
-            'num_rows':df.shape[0],
-            'num_cols':df.shape[1],
-            'numerical_cols':numerical_cols,
-            'num_numerical_cols':len(numerical_cols),
-            'num_cat_cols':len(cat_cols),
-            'num_datetime_cols':len(date_cols),
-            'cat_cols':cat_cols,
-            'datetime_cols':date_cols
-            })
-        
-        if len(date_cols)==0:
-            context['datetime_cols'] = 'None'
-            context['num_datetime_cols'] = 0
-        
-
-    return render(request, 'dataframe_summary.html', context)
+        return render(request, 'dashboard.html', context)
     
 def save_to_database(request):
     save_success = False  # Default to False if not successful
@@ -195,7 +150,7 @@ def save_to_database(request):
     # Redirect to dataframe_summary with save_success flag in the URL
     return HttpResponseRedirect(f'/dataframe_summary/?save_success={save_success}')
 
-            
+           
 
 
     
