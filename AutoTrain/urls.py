@@ -20,5 +20,7 @@ from Home import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include("Home.urls"),name='home')
+    path('', include('Home.urls')),  # Remove 'name='home'' here
+    #path('login/', include('Home.urls')),  # Remove 'name='login'' here
+    #path('dev/', include('Home.urls')),  # Remove 'name='dev'' here
 ]
