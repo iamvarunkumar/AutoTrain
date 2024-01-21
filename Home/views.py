@@ -1,17 +1,64 @@
 from django.shortcuts import render, redirect
 import pandas as pd
-from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
 import sqlite3
 import json
+from django.contrib import messages
+from .models import UserSignUpDetails
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html',)
 
-def login(request):
-    return render(request, 'signup.html')
+def signup_page(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            
+            # Save user input to UserSignUpDetails model
+            user = UserSignUpDetails.objects.create(
+            name=request.POST.get('name'),
+            email=request.POST.get('email'),
+            password=request.POST.get('password'),  # Updated to match the form field name
+            rep_password=request.POST.get('rep_password'),  # Updated to match the form field name
+            )
+            user.save()
+
+            messages.success(request, f'Account created successfully for {user.name}. Please login.')
+            return redirect('login')
+        else:
+            print(form.errors)  # Print form errors to the console for debugging
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
+
+def login_page(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = authenticate(request, username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))
+            if user is not None:
+                login(request, user)
+
+                # Retrieve user input from UserInput model
+                user_input = UserSignUpDetails.objects.get(user=user)
+
+                messages.success(request, f'Welcome, {user.username}!')
+
+                return redirect('welcome')  
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
+
+@login_required(login_url="login")
+def welcome(request):
+    return render(request, 'welcome.html')
+
 
 def documentation(request):
     return render(request, 'documentation.html')

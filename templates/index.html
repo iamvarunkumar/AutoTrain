@@ -18,6 +18,13 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+        <link rel="stylesheet" href="{% static 'css/main.css'%}">
+        <style>
+            body {
+                background: url('{% static "images/background/stacked-peaks-haikei.svg" %}') no-repeat center center fixed;
+                background-size: cover;
+            }
+        </style>
     </head>
 
 <body>   
@@ -25,7 +32,7 @@
 <!-- Navbar Block Start -->
 <nav
     class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container">
+    <div class="container-fluid px-5">
         <a class="navbar-brand" href="#">AutoTrain</a>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
@@ -42,126 +49,152 @@
                     <a class="nav-link" href={% url 'documentation' %}>Documentation</a>
                 </li>                        
             </ul>
-            <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+            <a class="btn btn-primary" href="{% url 'login_page' %}">Login</a>
         </div>
     </div>
 </nav>
 <!-- Navbar Block End -->
 
-<!-- Hero Section Start -->
+<div class="container card shadow-lg my-5 mx-auto py-5 px-2">
+    <!-- Hero Section Start -->
 
-<div class="container text-center py-5 mb-2 ">
-    <div class="p-5 mb-4 lc-block">
-        <div class="lc-block mb-4">
-            <div editable="rich">
-                <h1 class="fw-bold display-1">Upload, Select & Click</h3>
-                <h2 class="fw-bold display-5">that's all it takes to train ML Models<br></h2>
-            </div>
-        </div>
-        <div class="lc-block mb-5">
-            <div editable="rich">
-                <p class="lead">Say goodbye to training your ML models in jupyter notebook,<br>just upload your training ready dataset and this tool will take care of the rest.<br>
-                From <i><b>Feature Selection, Transformation, Model Selection</b></i> to <i><b>Model Evaluation, Experiment Tracking, Logs</b></i> and much more.</p>
-            </div>
-        </div>
-        <div class="lc-block mb-2">
-            <a class="btn btn-primary" href="#" role="button">Let's Go!!</a>
-        </div>
-        <div class="lc-block">
-            <a class="btn btn-link btn-sm" href="#" role="button">How to use?</a>
-        </div>
-    </div>
-</div> 
-<div class="container py-4 py-lg-6">
-    <div class="row align-items-center flex-lg-row-reverse">
-        <div class="col-lg-6 mb-5 mb-lg-0 ">
-            <div class="lc-block px-4"><!--  If you want to remove px-4 please add overflow-hidden class to the section -->
-                <div class="position-relative">
-                    
-
-                    <img class="position-relative img-fluid" src={% static 'images/dashboard.png' %}>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 ">
+    <div class="container text-center">
+        <div class="p-5 mb-4 lc-block">
             <div class="lc-block mb-4">
                 <div editable="rich">
-
-                    <h2 class="fw-bold display-5" style="color: rgb(56, 102, 202);">AutoTrain - ML Training Dashboard</h2>
+                    <h1 class="fw-bold display-1">Upload, Select & Click</h3>
+                    <h2 class="fw-bold display-5">that's all it takes to train ML Models<br></h2>
                 </div>
             </div>
             <div class="lc-block mb-5">
                 <div editable="rich">
-                    <p class="lead text-muted">Enough of the endless notebook shuffle! <b>AutoTrain</b> takes the wheel of your ML experiments. Ditch the data prep purgatory - 
-                        upload your dataset, select your parameters, and AutoTrain will train the model, store results & artifacts so that it can be retrieved later on.
-                        No more searching for the best features or metrics lost in spreadsheets. AutoTrain is your data science superpower, unleashing the hidden potential 
-                        of your experiments and letting you focus on what matters most - building the model. Forget notebook purgatory, enter the era of automated experimentation.
-                            </p>
+                    <p class="lead">Say goodbye to training your ML models in jupyter notebook,<br>just upload your training ready dataset and this tool will take care of the rest.<br>
+                    From <i><b>Feature Selection, Transformation, Model Selection</b></i> to <i><b>Model Evaluation, Experiment Tracking, Logs</b></i> and much more.</p>
                 </div>
             </div>
-
-            <div class="lc-block d-sm-flex align-items-center mb-4 overflow-hidden position-relative">
-                <div class="d-inline-flex">
-                    <div>
-                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" lc-helper="svg-icon" class="text-success">
-                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
-                            <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"></path>
-                        </svg>
-                    </div>
-
-                    <div class="ms-3 align-self-center" editable="rich">
-                        <p>Feature Selection, Transformation, Normalization, Imputation.</p>
-                    </div>
-                </div>
+            <div class="lc-block mb-2">
+                <a class="btn btn-primary" href="#" role="button">Let's Go!!</a>
             </div>
-            <div class="lc-block d-sm-flex align-items-center mb-4">
-                <div class="d-inline-flex">
-                    <div>
-                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" lc-helper="svg-icon" class="text-success">
-                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
-                            <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"></path>
-                        </svg>
-                    </div>
+            <div class="lc-block">
+                <a class="btn btn-link btn-sm" href="#" role="button">How to use?</a>
+            </div>
+        </div>
+    </div> 
+    <div class="container py-4 py-lg-6 mx-5">
+        <div class="row align-items-center flex-lg-row-reverse">
+            <div class="col-lg-6 mb-5 mb-lg-0 ">
+                <div class="lc-block px-4"><!--  If you want to remove px-4 please add overflow-hidden class to the section -->
+                    <div class="position-relative">
+                        
 
-                    <div class="ms-3 align-self-center" editable="rich">
-                        <p>Model Selection, Hyperparameter Tuning, Cross-Validation.</p>
+                        <img class="position-relative img-fluid" src={% static 'images/dashboard.png' %}>
                     </div>
                 </div>
             </div>
-            <div class="lc-block d-sm-flex align-items-center mb-4">
-                <div class="d-inline-flex">
-                    <div>
-                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" lc-helper="svg-icon" class="text-success">
-                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
-                            <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"></path>
-                        </svg>
-                    </div>
+            <div class="col-lg-6 ">
+                <div class="lc-block mb-4">
+                    <div editable="rich">
 
-                    <div class="ms-3 align-self-center" editable="rich">
-                        <p>Metrics Report, Experiment Tracking and much more..</p>
+                        <h2 class="fw-bold display-5" style="color: rgb(56, 102, 202);">AutoTrain - ML Training Dashboard</h2>
+                    </div>
+                </div>
+                <div class="lc-block mb-5">
+                    <div editable="rich">
+                        <p class="lead">Enough of the endless notebook shuffle! <b>AutoTrain</b> takes the wheel of your ML experiments. Ditch the data prep purgatory - 
+                            upload your dataset, select your parameters, and AutoTrain will train the model, store results & artifacts so that it can be retrieved later on.
+                            No more searching for the best features or metrics lost in spreadsheets. AutoTrain is your data science superpower, unleashing the hidden potential 
+                            of your experiments and letting you focus on what matters most - building the model. Forget notebook purgatory, enter the era of automated experimentation.
+                                </p>
+                    </div>
+                </div>
+
+                <div class="lc-block d-sm-flex align-items-center mb-4 overflow-hidden position-relative">
+                    <div class="d-inline-flex">
+                        <div>
+                            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" lc-helper="svg-icon" class="text-success">
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"></path>
+                            </svg>
+                        </div>
+
+                        <div class="ms-3 align-self-center" editable="rich">
+                            <p>Feature Selection, Transformation, Normalization, Imputation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lc-block d-sm-flex align-items-center mb-4">
+                    <div class="d-inline-flex">
+                        <div>
+                            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" lc-helper="svg-icon" class="text-success">
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"></path>
+                            </svg>
+                        </div>
+
+                        <div class="ms-3 align-self-center" editable="rich">
+                            <p>Model Selection, Hyperparameter Tuning, Cross-Validation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lc-block d-sm-flex align-items-center mb-4">
+                    <div class="d-inline-flex">
+                        <div>
+                            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" lc-helper="svg-icon" class="text-success">
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"></path>
+                            </svg>
+                        </div>
+
+                        <div class="ms-3 align-self-center" editable="rich">
+                            <p>Metrics Report, Experiment Tracking and much more..</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Upload File Block Start -->
-<div class="container mt-2">
-    <div class="mb-3">
-        <label for="" class="form-label">Upload your dataset</label>
-        <input
-            type="file"
-            class="form-control"
-            name=""
-            id=""
-            placeholder=""
-            aria-describedby="fileHelpId"
-        />
-        <a class="btn btn-primary mt-3" href="#" role="button">Upload</a>
-    </div>
+    <section class=" services-section">
+        <div class="container text-center common-title fw-bold">
+            <h2 class="common-heading">What This Tool Will Do For <br> Your Project</h2>
+            <hr class="w-25 mx-auto ">
+        </div>
+        <div class="container mt-5">
+            <div class="row g-5 ">
+                <div class="col-xxl-4 col-lg-4 col-12 ">
+                    <div class=" card-box rounded-2 p-3 text-center h-100 ">
+                        <img alt="GIF Image" class="img-fluid" src={%static 'gif/upload.gif'%} width="300px">
+
+                        <h4 class="my-3">Upload <i class="fa-solid fa-upload"></i></h4>
+                        <p class="pe-3 mb-5">
+                            Your training ready dataset with TARGET variable.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-lg-4 col-12 ">
+                    <div class=" card-box rounded-2 p-3 text-center h-100">
+                        <img alt="GIF Image" class="img-fluid" src={%static 'gif/select.gif'%} width="300px">
+
+                        <h4 class="my-3 ">Select <i class="fa-regular fa-circle-check"></i></h4>
+                        <p class="pe-3 mb-5">
+                            Features to encode, scale, transform, features to use, model and, metrics for model training.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-lg-4 col-12 ">
+                    <div class=" card-box rounded-2 p-3 text-center h-100">
+                        <img alt="GIF Image" class="img-fluid" src={%static 'gif/click.gif'%} width="300px">
+
+                        <h4 class="my-3 ">Click <i class="fa-regular fa-hand-pointer"></i></h4>
+                        <p class="pe-3 mb-5">
+                            Train model, store, retrieve and, compare results of different iterations. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
-<!-- Upload File Block End -->
 
 
 
